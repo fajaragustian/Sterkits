@@ -44,12 +44,35 @@
         </div>
     </li>
 
+
+    @role(['Super Admin'])
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{ route('roles.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Roles</span></a>
+            <span>Manage Roles</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('users.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Manage Users</span></a>
+    </li>
+    @elserole(['Admin'])
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('users.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Manage Users</span></a>
+    </li>
+    @endrole
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('products.index') }}">
+            <i class="fas fa-fw fa-city"></i>
+            <span>Product</span></a>
+    </li>
+
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

@@ -27,8 +27,8 @@
                 <div class="row">
                     <div class="col-md-4 pt-md-2">
                         @if ($user->avatar)
-                        <img src="{{ asset('../storage/photos/'.$user->avatar ) ?? Auth::user()->avatar }}"
-                            class="img-profile rounded-circle mx-auto d-block" srcset="" width="200px" height="180px">
+                        <img src=" https://ui-avatars.com/api/?name={{ Auth::user()->name }}/?rounded=true"
+                            class="img-profile rounded-circle mx-auto d-block" srcset="" width="190px" height="190px">
                         @else
                         <img class="img-thumbnail rounded mx-auto d-block"
                             src="{{ asset('template/auth/img/undraw_profile.svg') }}">
@@ -93,7 +93,7 @@
                             <div class=" form-group">
                                 <label for="University" class="form-label ml-2">University</label>
                                 <input type="text"
-                                    class="form-control form-control-user @error('uuniversity') is-invalid @enderror"
+                                    class="form-control form-control-user @error('university') is-invalid @enderror"
                                     name="university" required autocomplete="University" id="University"
                                     aria-describedby="university" value="{{ $user->university ?? old('university') }}"
                                     placeholder="Enter Your University">

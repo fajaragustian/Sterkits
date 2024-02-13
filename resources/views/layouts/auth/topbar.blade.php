@@ -19,7 +19,7 @@
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                 @if (Auth::user()->avatar != null )
-                <img src="{{ asset('./storage/photos/' . Auth::user()->avatar)   }}" alt="Avatar"
+                <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" alt="Avatar"
                     class="img-profile rounded-circle">
                 @else
                 <img class="img-profile rounded-circle" src="{{ asset('./template/auth/img/undraw_profile.svg') }}">

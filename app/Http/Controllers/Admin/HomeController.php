@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
+    // dashboard
+    public function index()
+    {
+        return view('home');
+    }
     // Profile
     public function changeProfile()
     {

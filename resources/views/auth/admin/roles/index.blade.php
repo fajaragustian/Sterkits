@@ -3,7 +3,6 @@
 @section('content')
 <!-- Content Row -->
 <div class="row">
-
     <!-- Content Column -->
     <div class="col-lg-12 mb-4">
         <!-- Illustrations -->
@@ -12,7 +11,8 @@
                 <h6 class="m-0 font-weight-bold text-primary">Manage Roles</h6>
             </div>
             <div class="card-body">
-                @can('role-create')
+
+                @can('create-role')
                 <a href="{{ route('roles.create') }}" class="btn btn-success btn-sm my-2"><i
                         class="bi bi-plus-circle"></i> Add New
                     Role</a>
@@ -40,12 +40,12 @@
                                                 class="bi bi-eye"></i> Show</a>
 
                                         @if ($role->name!='Super Admin')
-                                        @can('role-edit')
+                                        @can('edit-role')
                                         <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm"><i
                                                 class="bi bi-pencil-square"></i> Edit</a>
                                         @endcan
 
-                                        @can('role-delete')
+                                        @can('delete-role')
                                         @if ($role->name!=Auth::user()->hasRole($role->name))
                                         <button type="submit" class="btn btn-danger btn-sm"
                                             onclick="return confirm('Do you want to delete this role?');"><i

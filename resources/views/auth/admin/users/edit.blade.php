@@ -1,5 +1,5 @@
 @extends('layouts.auth.main')
-@section('title','Dashboard New Users ')
+@section('title','Dashboard Edit Users ')
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -16,7 +16,7 @@
         <!-- Illustrations -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">New Account Users</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Edit Account Users</h6>
             </div>
             <div class="card-body">
                 <div class="text-center">
@@ -36,16 +36,17 @@
 
                     </div>
                     <div class="col-md-8">
-                        <form class="user" method="POST" action="{{ route('users.store') }}"
+                        <form class="user" action="{{ route('users.update', $user->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
+                            @method('PATCH')
                             {{-- Name --}}
                             <div class=" form-group">
                                 <label for="Name" class="form-label ml-2">Full Name</label>
                                 <input type="text"
                                     class="form-control form-control-user @error('name') is-invalid @enderror"
                                     name="name" required autocomplete="Name" id="Name" aria-describedby="Name"
-                                    placeholder="Create Your FullName" value="{{ old('name') }}">
+                                    placeholder="Create Your FullName" value="{{ $user->name ?? old('name') }}">
                                 @error('name')
                                 <span class=" invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -58,7 +59,7 @@
                                 <input type="email"
                                     class="form-control form-control-user @error('email') is-invalid @enderror"
                                     name="email" required autocomplete="Email" id="Email" aria-describedby="Email"
-                                    placeholder="Create your Email " value="{{ old('email') }}">
+                                    placeholder="Create your Email " value="{{ $user->email ?? old('email') }}">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -72,7 +73,7 @@
                                     class="form-control form-control-user @error('username') is-invalid @enderror"
                                     name="username" required autocomplete="Username" id="Username"
                                     aria-describedby="Username" placeholder="Enter Your Username"
-                                    value="{{ old('username') }}">
+                                    value="{{ $user->username ??  old('username') }}">
                                 @error('username')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -86,7 +87,7 @@
                                     class="form-control form-control-user @error('working') is-invalid @enderror"
                                     name="working" required autocomplete="Working" id="Working"
                                     aria-describedby="Working" placeholder="Enter Your Working"
-                                    value="{{ old('working') }}">
+                                    value="{{ $user->working ?? old('working') }}">
                                 @error('working')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -100,7 +101,7 @@
                                     class="form-control form-control-user @error('university') is-invalid @enderror"
                                     name="university" required autocomplete="University" id="University"
                                     aria-describedby="university" placeholder="Enter Your University"
-                                    value="{{ old('university') }}">
+                                    value="{{  $user->university  ?? old('university') }}">
                                 @error('university')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -113,7 +114,8 @@
                                 <input type="number"
                                     class="form-control form-control-user @error('phone') is-invalid @enderror"
                                     name="phone" required autocomplete="Phone" id="Phone" aria-describedby="phone"
-                                    placeholder="Enter Your Number Phone" maxlength="15" value="{{ old('phone') }}">
+                                    placeholder="Enter Your Number Phone" maxlength="15"
+                                    value="{{ $user->phone ?? old('phone') }}">
                                 @error('phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -127,7 +129,7 @@
                                     class="form-control form-control-user @error('country') is-invalid @enderror"
                                     name="country" required autocomplete="Country" id="Country"
                                     aria-describedby="country" placeholder="Enter Your Country"
-                                    value="{{ old('country') }}">
+                                    value="{{ $user->country ?? old('country') }}">
                                 @error('country')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -140,7 +142,7 @@
                                 <input type="text"
                                     class="form-control form-control-user @error('region') is-invalid @enderror"
                                     name="region" required autocomplete="Region" id="Region" aria-describedby="Region"
-                                    placeholder="Enter Your password" value="{{ old('region') }}">
+                                    placeholder="Enter Your password" value="{{  $user->region ?? old('region') }}">
                                 @error('region')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -152,8 +154,8 @@
                                 <label for="Password" class="form-label ml-2">Password</label>
                                 <input type="password"
                                     class="form-control form-control-user @error('password') is-invalid @enderror"
-                                    name="password" required autocomplete="Password" id="Password"
-                                    aria-describedby="password" placeholder="Enter Your Password">
+                                    name="password" autocomplete="Password" id="Password" aria-describedby="password"
+                                    placeholder="Enter Your Password">
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -165,9 +167,8 @@
                                 <label for="confirm-password" class="form-label ml-2">Confirm Password</label>
                                 <input type="password"
                                     class="form-control form-control-user @error('confirm-password') is-invalid @enderror"
-                                    name="confirm-password" required autocomplete="confirm-password"
-                                    id="confirm-password" aria-describedby="confirm-password"
-                                    placeholder="Enter Your Confirm Password">
+                                    name="confirm-password" autocomplete="confirm-password" id="confirm-password"
+                                    aria-describedby="confirm-password" placeholder="Enter Your Confirm Password">
                                 @error('confirm-password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -190,8 +191,7 @@
                             {{-- Roles --}}
                             <div class=" form-group">
                                 <label for="roles[]" class="form-label ml-2">Select Role</label>
-                                <select class="form-control multiple" multiple name="roles[]" size="3" value={{
-                                    old('roles[]') }}>
+                                <select class="form-control multiple" multiple name="roles[]" size="3">
                                     @foreach ($roles as $role)
                                     <option value="{{ $role }}">{{ $role }}</option>
                                     @endforeach
@@ -202,7 +202,6 @@
                                 </span>
                                 @enderror
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-success btn-user btn-block">
