@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -46,7 +46,7 @@
 
 
     @role(['Super Admin'])
-    <!-- Nav Item - Charts -->
+    <!-- Nav Item -  -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('roles.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
@@ -58,19 +58,20 @@
             <span>Manage Users</span></a>
     </li>
     @elserole(['Admin'])
-    <!-- Nav Item - Charts -->
+    <!-- Nav Item - -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('users.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Manage Users</span></a>
     </li>
     @endrole
-    <!-- Nav Item - Charts -->
+    <!-- Nav Item -  -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('products.index') }}">
-            <i class="fas fa-fw fa-city"></i>
-            <span>Product</span></a>
+            <i class="fas fa-fw fa-users"></i>
+            <span>Manage Product</span></a>
     </li>
+
 
 
 

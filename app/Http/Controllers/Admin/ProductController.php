@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+
 class ProductController extends Controller
 {
     public function __construct()
@@ -24,7 +25,7 @@ class ProductController extends Controller
     {
         //
         $products = Product::latest()->paginate(50);
-        return view('products.index', compact('products'));
+        return view('auth.admin.products.index', compact('products'));
     }
 
     /**
@@ -35,7 +36,7 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return view('products.create');
+        return view('auth.admin.products.create');
     }
 
     /**
@@ -49,7 +50,7 @@ class ProductController extends Controller
         //
         request()->validate([
             'name' => 'required',
-            'detail' => 'required',
+            'description' => 'required',
         ]);
 
         Product::create($request->all());
@@ -64,10 +65,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
         //
-        return view('products.show', compact('product'));
+        return view('auth.admin.products.show', compact('product'));
     }
 
     /**
@@ -76,10 +77,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
         //
-        return view('products.edit', compact('product'));
+        return view('auth.admin.products.edit', compact('product'));
     }
 
     /**
@@ -94,7 +95,7 @@ class ProductController extends Controller
         //
         request()->validate([
             'name' => 'required',
-            'detail' => 'required',
+            'description' => 'required',
         ]);
 
         $product->update($request->all());
